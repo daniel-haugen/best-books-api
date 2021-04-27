@@ -1,0 +1,7 @@
+## Env files, linter, and node modules
+.env
+node_modules
+.eslintrc.json
+
+
+
