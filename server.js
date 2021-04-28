@@ -28,7 +28,7 @@ db.once("open", function () {
 });
 
 // requiring Schema model from user.js
-const User = require("./models/user");
+const User = require("./models/User");
 
 // Home Route Path
 app.get("/", (request, response) => {
