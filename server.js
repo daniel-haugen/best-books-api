@@ -57,8 +57,6 @@ async function getAllBooks(request, response) {
     if (err) {
       return console.error(err);
     } else {
-    console.log(user[0].favBooks);
-    
     response.send(user[0].favBooks.length ? user[0].favBooks : 'No books : ');
     };
   })
@@ -66,22 +64,25 @@ async function getAllBooks(request, response) {
 
 app.post('/books', async (req, res) => {
 
-  const { email } = request.query;
-  const { json } = request.body;
+  const { email } = req.query;
+  const { newBook } = req.body;
+  
 
   await User.find({ email }, (err, users) => {
-    if (email.length) {
-      const currentUser = users[0].favBooks;
+    if (users.length) {
 
-      const newBook = json;
-
-      currentUser.push(newBook);
-
+      //
+      const currentUserBooks = users[0].favBooks;
+      currentUserBooks.push(newBook);
+      
+      const currentUser = users[0];
       currentUser.save();
+
+      res.send('updated! Added to the collection')
 
 
     } else {
-      response.send('no users with that email');
+      res.send('no users with that email');
     };
   })
 

@@ -14,8 +14,11 @@ http://localhost:3001/books?email=michael@email.com
 
 POST http://localhost:3001/books?email=michael@email.com HTTP/1.1
 content-type:application/json
+
 {
-  "name" : "sample"
+  "name":  "Harry Potter",
+  "description": "wizard book",
+  "status": "checked out"  
 }
 
 ###
