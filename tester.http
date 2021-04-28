@@ -1,0 +1,23 @@
+http://localhost:3001
+
+
+###
+
+http://localhost:3001/unknown
+
+
+###
+
+http://localhost:3001/books?email=michael@email.com  
+
+###
+
+POST http://localhost:3001/books?email=michael@email.com HTTP/1.1
+content-type:application/json
+{
+  "name" : "sample"
+}
+
+###
+
+DELETE http://localhost:3000/0books? HTTP/1.1
