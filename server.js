@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3002;
 const dbURL = process.env.DATABASE_URL;
 
 // Create BookDB
-mongoose.connect(`mongodb://${dbURL}/bookdb`, {
+mongoose.connect(`${dbURL}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
