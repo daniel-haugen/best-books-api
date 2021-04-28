@@ -75,10 +75,10 @@ app.post("/books", async (req, res) => {
 
 app.delete("/books/:id", async (req, res) => {
   const { email } = req.query;
-  console.log({ email });
+
 
   const index = req.params.id;
-  console.log({ index });
+ 
 
   await User.find({ email }, (err, users) => {
     if (email.length) {
