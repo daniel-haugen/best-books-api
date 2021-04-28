@@ -19,6 +19,11 @@ db.once('open', function () {
   console.log('Mongoose is connected')
 });
 
+const User = require('./models/user');
+
+const michael = new User({email: 'email@email.com', favBooks:[{name:'Good Book', description: 'Good read', status: 'checked out' }, {name:'Good Book2', description: 'The Sqeaquel', status: 'out of print' } ]});
+
+michael.save();
 
 app.get('/', (request, response) => {
   response.send('Root');
