@@ -1,0 +1,30 @@
+http://localhost:3001
+
+
+###
+
+http://localhost:3001/unknown
+
+
+###
+
+http://localhost:3001/books?email=michael@email.com  
+
+###
+
+POST http://localhost:3001/books?email=michael@email.com HTTP/1.1
+content-type:application/json
+
+{
+  "name":  "Harry Potter",
+  "description": "wizard book",
+  "status": "checked out"  
+}
+
+###
+
+DELETE http://localhost:3001/books/0?email=michael@email.com HTTP/1.1
+
+
+
+###
