@@ -71,43 +71,50 @@ app.post("/books", async (req, res) => {
       res.send("no users with that email");
     }
   });
-
-  app.delete("/books/:id", async (req, res) => {
-    const { email } = req.query;
-    console.log({email});
-
-    const index = req.params.id;
-    console.log({index});
-
-    await User.find({ email }, (err, users) => {
-      if (email.length) {
-      } else {
-        res.send("no user found");
-      }
-    });
-  });
-
-  // const michael = new User({
-  //     email: 'michael@email.com',
-  //     favBooks: [{
-  //       name: 'Good Book',
-  //       description: 'Good read',
-  //       status: 'checked out'
-  //     },
-  //     {
-  //       name: 'Good Book2',
-  //       description: 'The Sqeaquel',
-  //       status: 'out of print'
-  //     },
-  //     {
-  //       name: 'Good Book3',
-  //       description: 'The Threeaquel',
-  //       status: 'way way out of print'
-  //     }]
-  //   });
-
-  //   michael.save();
 });
+
+app.delete("/books/:id", async (req, res) => {
+  const { email } = req.query;
+  console.log({ email });
+
+  const index = req.params.id;
+  console.log({ index });
+
+  await User.find({ email }, (err, users) => {
+    if (email.length) {
+      const currentUser = users[0];
+      const currentUserBooks = currentUser.favBooks;
+      
+      currentUserBooks.splice(index, 1);
+
+      currentUser.save();
+      res.status(200).send('deleted');
+    } else {
+      res.send("no user found");
+    }
+  });
+});
+
+// const michael = new User({
+//     email: 'michael@email.com',
+//     favBooks: [{
+//       name: 'Good Book',
+//       description: 'Good read',
+//       status: 'checked out'
+//     },
+//     {
+//       name: 'Good Book2',
+//       description: 'The Sqeaquel',
+//       status: 'out of print'
+//     },
+//     {
+//       name: 'Good Book3',
+//       description: 'The Threeaquel',
+//       status: 'way way out of print'
+//     }]
+//   });
+
+//   michael.save();
 
 app.listen(PORT, () => console.log(`Server is live on ${PORT}`));
 
