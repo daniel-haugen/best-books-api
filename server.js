@@ -40,6 +40,7 @@ app.get("/books", getAllBooks);
 async function getAllBooks(request, response) {
   // query input for this path
   const { email } = request.query;
+  console.log(email)
   // const email = request.query.email;
 
   // find a user with the request email query
@@ -47,7 +48,7 @@ async function getAllBooks(request, response) {
     if (err) {
       return console.error(err);
     } else {
-      response.send(user[0].favBooks.length ? user[0].favBooks : "No books : ");
+      response.send(user[0] ? user[0].favBooks : "No books : ");
     }
   });
 }
@@ -95,26 +96,26 @@ app.delete("/books/:id", async (req, res) => {
   });
 });
 
-// const michael = new User({
-//     email: 'michael@email.com',
-//     favBooks: [{
-//       name: 'Good Book',
-//       description: 'Good read',
-//       status: 'checked out'
-//     },
-//     {
-//       name: 'Good Book2',
-//       description: 'The Sqeaquel',
-//       status: 'out of print'
-//     },
-//     {
-//       name: 'Good Book3',
-//       description: 'The Threeaquel',
-//       status: 'way way out of print'
-//     }]
-//   });
+const michael = new User({
+    email: 'cam3000@gmail.com',
+    favBooks: [{
+      name: 'Good Book',
+      description: 'Good read',
+      status: 'checked out'
+    },
+    {
+      name: 'Good Book2',
+      description: 'The Sqeaquel',
+      status: 'out of print'
+    },
+    {
+      name: 'Good Book3',
+      description: 'The Threeaquel',
+      status: 'way way out of print'
+    }]
+  });
 
-//   michael.save();
+  michael.save();
 
 app.listen(PORT, () => console.log(`Server is live on ${PORT}`));
 
